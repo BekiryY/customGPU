@@ -9,11 +9,11 @@
   "SubInsts" : [
    {
     "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
-    "InstLine" : 60,
-    "InstName" : "u_PLL_1",
-    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll/gowin_rpll.v",
+    "InstLine" : 66,
+    "InstName" : "u_PLL_3",
+    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll_21/gowin_rpll_21.v",
     "ModuleLine" : 10,
-    "ModuleName" : "Gowin_rPLL"
+    "ModuleName" : "Gowin_rPLL_21"
    },
    {
     "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
@@ -25,7 +25,7 @@
    },
    {
     "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
-    "InstLine" : 91,
+    "InstLine" : 95,
     "InstName" : "u_loader",
     "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/loader.sv",
     "ModuleLine" : 1,
@@ -43,7 +43,7 @@
    },
    {
     "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
-    "InstLine" : 151,
+    "InstLine" : 156,
     "InstName" : "u_DVI_TX_Top",
     "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1072,
@@ -68,13 +68,5 @@
   "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_clkdiv/gowin_clkdiv.v",
   "ModuleLine" : 10,
   "ModuleName" : "Gowin_CLKDIV"
- },
- {
-  "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll_21/gowin_rpll_21.v",
-  "InstLine" : 10,
-  "InstName" : "Gowin_rPLL_21",
-  "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll_21/gowin_rpll_21.v",
-  "ModuleLine" : 10,
-  "ModuleName" : "Gowin_rPLL_21"
  }
 ]

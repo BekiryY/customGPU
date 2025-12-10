@@ -7,9 +7,9 @@ type=ram_prom
 version=1.0
 
 [Config]
-DEPTH=65536
+DEPTH=50646
 LANG=0
-MEM_FILE=../prom.mi
 READ=0
 RESET_MODE=true
 WIDTH=8
+MEM_FILE=../prom.mi

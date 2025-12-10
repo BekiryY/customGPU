@@ -10,7 +10,7 @@
         <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_prom/gowin_prom.v" type="file.verilog" enable="1"/>
-        <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="0"/>
         <File path="src/gowin_rpll_21/gowin_rpll_21.v" type="file.verilog" enable="1"/>
         <File path="src/loader.sv" type="file.verilog" enable="1"/>
         <File path="src/tmds_rPLL/tmds_rPLL.v" type="file.verilog" enable="1"/>

@@ -57,16 +57,16 @@ wire pix_clk;
 
 // 4.5 MHz
 // planned to be system frequency
-Gowin_rPLL u_PLL_1(
-.clkin     (clk_i     ),    //input clk 
-.clkout    (sys_clk)   //output clk 
-);
-
-//Gowin_rPLL_21 u_PLL_3(
-//.clkin     (serial_clk     ),    //input clk 
+//Gowin_rPLL u_PLL_1(
+//.clkin     (clk_i     ),    //input clk 
 //.clkout    (sys_clk)   //output clk 
 //);
 
+//25.2MHZ
+Gowin_rPLL_21 u_PLL_3(
+.clkin     (serial_clk     ),    //input clk 
+.clkout    (sys_clk)   //output clk 
+);
 
 //371.25MHz
 tmds_rPLL u_PLL_2 (
@@ -75,6 +75,7 @@ tmds_rPLL u_PLL_2 (
 .lock      (pll_lock  )     //output lock
 );
 
+//25.169MHZ ---> 59.92Hz not ideal but okay
 CLKDIV u_CLKDIV (
 .RESETN(hdmi4_rst_n),
 .HCLKIN(serial_clk), //clk  x5
@@ -87,10 +88,13 @@ CLKDIV u_CLKDIV (
 logic data_request;
 logic data_valid;
 logic [7:0] data_out;
+logic [7:0] data_out_controlled;
+
+assign data_out_controlled = data_request ? data_out : 8'b0;
 
     loader u_loader (
         .clk(sys_clk),
-        .rst_n(rst_n),
+        .rst_n(hdmi4_rst_n),
         .i_next(data_request),
         .o_data(data_out),
         .o_valid(data_valid)
@@ -106,9 +110,9 @@ localparam V_TOTAL  = 525; // 480 + FrontPorch + Sync + BackPorch
 logic [11:0]cnt_hor;
 logic [11:0]cnt_ver;
 //counter for 225 horizontal
-always @(posedge sys_clk or negedge rst_n) begin
-    if(!rst_n)
-        cnt_hor <= 12'd0;
+always @(posedge sys_clk or negedge hdmi4_rst_n) begin
+    if(!hdmi4_rst_n)
+        cnt_hor <= H_ACTIVE;
     else if(cnt_hor == H_TOTAL - 1) // Reset at end of line
         cnt_hor <= 12'd0;
     else
@@ -116,9 +120,9 @@ always @(posedge sys_clk or negedge rst_n) begin
 end
 
 //counter for 225 vertical
-always @(posedge sys_clk or negedge rst_n) begin
-    if(!rst_n)
-        cnt_ver <= 12'd0;
+always @(posedge sys_clk or negedge hdmi4_rst_n) begin
+    if(!hdmi4_rst_n)
+        cnt_ver <= V_ACTIVE;
     else if(cnt_hor == H_TOTAL - 1) begin // Tick ONLY at end of line
         if(cnt_ver == V_TOTAL - 1)        // Reset at end of frame
             cnt_ver <= 12'd0;
@@ -127,13 +131,13 @@ always @(posedge sys_clk or negedge rst_n) begin
     end
 end
 
-// 3. Signals
-// Data Enable: High only inside the active box
-assign tp0_de_in = (cnt_hor < H_ACTIVE) && (cnt_ver < V_ACTIVE);
-// Syncs: Usually active low pulses somewhere in the blanking area
+    // 3. Signals
+    // Data Enable: High only inside the active box
+    assign tp0_de_in = (cnt_hor < H_ACTIVE) && (cnt_ver < V_ACTIVE);
+    // Syncs: Usually active low pulses somewhere in the blanking area
 // (Simplified example)
-assign tp0_hs_in = (cnt_hor >= H_ACTIVE + 16 && cnt_hor < H_ACTIVE + 16 + 96) ? 1'b0 : 1'b1; 
-assign tp0_vs_in = (cnt_ver >= V_ACTIVE + 10 && cnt_ver < V_ACTIVE + 10 + 2)  ? 1'b0 : 1'b1;
+    assign tp0_hs_in = (cnt_hor >= H_ACTIVE + 16 && cnt_hor < H_ACTIVE + 16 + 96) ? 1'b0 : 1'b1; 
+    assign tp0_vs_in = (cnt_ver >= V_ACTIVE + 10 && cnt_ver < V_ACTIVE + 10 + 2)  ? 1'b0 : 1'b1;
 
 // Request data when we are inside the 225x225 image area
 assign data_request = (cnt_hor < 225) && (cnt_ver < 225);
@@ -148,6 +152,7 @@ assign hdmi4_rst_n = rst_n & pll_lock;
 defparam u_clkdiv.DIV_MODE="5";
 defparam u_clkdiv.GSREN="false";
 
+
 DVI_TX_Top u_DVI_TX_Top
 (
     .I_rst_n       (hdmi4_rst_n   ),  //asynchronous reset, low active
@@ -158,9 +163,9 @@ DVI_TX_Top u_DVI_TX_Top
     .I_rgb_hs      (tp0_hs_in     ),    
     .I_rgb_de      (tp0_de_in     ), 
 
-    .I_rgb_r       (  data_out ),  //tp0_data_r
-    .I_rgb_g       (  data_out ),  
-    .I_rgb_b       (  data_out ),  
+    .I_rgb_r       (  data_out_controlled ),  //tp0_data_r
+    .I_rgb_g       (  data_out_controlled ),  
+    .I_rgb_b       (  data_out_controlled ),  
 
     .O_tmds_clk_p  (O_tmds_clk_p  ),
     .O_tmds_clk_n  (O_tmds_clk_n  ),

@@ -18,10 +18,6 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll/gowin_rpll.v",
-   "Type" : "verilog"
-  },
-  {
    "Path" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll_21/gowin_rpll_21.v",
    "Type" : "verilog"
   },

@@ -26,42 +26,8 @@ module gw_gao(
     tp0_vs_in,
     tp0_hs_in,
     tp0_de_in,
-    sys_clk,
-    \run_cnt[24] ,
-    \run_cnt[23] ,
-    \run_cnt[22] ,
-    \run_cnt[21] ,
-    \run_cnt[20] ,
-    \u_loader/i_next ,
     \u_loader/o_valid ,
     \u_loader/prom_ce ,
-    \u_loader/prom_valid_q ,
-    \u_loader/fifo_empty ,
-    \u_loader/fifo_wr ,
-    \u_loader/o_data[7] ,
-    \u_loader/o_data[6] ,
-    \u_loader/o_data[5] ,
-    \u_loader/o_data[4] ,
-    \u_loader/o_data[3] ,
-    \u_loader/o_data[2] ,
-    \u_loader/o_data[1] ,
-    \u_loader/o_data[0] ,
-    \u_loader/prom_addr[15] ,
-    \u_loader/prom_addr[14] ,
-    \u_loader/prom_addr[13] ,
-    \u_loader/prom_addr[12] ,
-    \u_loader/prom_addr[11] ,
-    \u_loader/prom_addr[10] ,
-    \u_loader/prom_addr[9] ,
-    \u_loader/prom_addr[8] ,
-    \u_loader/prom_addr[7] ,
-    \u_loader/prom_addr[6] ,
-    \u_loader/prom_addr[5] ,
-    \u_loader/prom_addr[4] ,
-    \u_loader/prom_addr[3] ,
-    \u_loader/prom_addr[2] ,
-    \u_loader/prom_addr[1] ,
-    \u_loader/prom_addr[0] ,
     \u_loader/prom_dout[7] ,
     \u_loader/prom_dout[6] ,
     \u_loader/prom_dout[5] ,
@@ -70,15 +36,29 @@ module gw_gao(
     \u_loader/prom_dout[2] ,
     \u_loader/prom_dout[1] ,
     \u_loader/prom_dout[0] ,
-    \data_out[7] ,
-    \data_out[6] ,
-    \data_out[5] ,
-    \data_out[4] ,
-    \data_out[3] ,
-    \data_out[2] ,
-    \data_out[1] ,
-    \data_out[0] ,
+    \u_loader/prom_valid_q ,
+    \u_loader/prom_addr[7] ,
+    \u_loader/prom_addr[6] ,
+    \u_loader/prom_addr[5] ,
+    \u_loader/prom_addr[4] ,
+    \u_loader/prom_addr[3] ,
+    \u_loader/prom_addr[2] ,
+    \u_loader/prom_addr[1] ,
+    \u_loader/prom_addr[0] ,
+    \u_loader/fifo_wr ,
+    \u_loader/fifo_empty ,
+    \u_loader/i_next ,
+    \data_out_controlled[7] ,
+    \data_out_controlled[6] ,
+    \data_out_controlled[5] ,
+    \data_out_controlled[4] ,
+    \data_out_controlled[3] ,
+    \data_out_controlled[2] ,
+    \data_out_controlled[1] ,
+    \data_out_controlled[0] ,
+    \run_cnt[24] ,
     rst_n,
+    sys_clk,
     tms_pad_i,
     tck_pad_i,
     tdi_pad_i,
@@ -112,42 +92,8 @@ input \cnt_ver[0] ;
 input tp0_vs_in;
 input tp0_hs_in;
 input tp0_de_in;
-input sys_clk;
-input \run_cnt[24] ;
-input \run_cnt[23] ;
-input \run_cnt[22] ;
-input \run_cnt[21] ;
-input \run_cnt[20] ;
-input \u_loader/i_next ;
 input \u_loader/o_valid ;
 input \u_loader/prom_ce ;
-input \u_loader/prom_valid_q ;
-input \u_loader/fifo_empty ;
-input \u_loader/fifo_wr ;
-input \u_loader/o_data[7] ;
-input \u_loader/o_data[6] ;
-input \u_loader/o_data[5] ;
-input \u_loader/o_data[4] ;
-input \u_loader/o_data[3] ;
-input \u_loader/o_data[2] ;
-input \u_loader/o_data[1] ;
-input \u_loader/o_data[0] ;
-input \u_loader/prom_addr[15] ;
-input \u_loader/prom_addr[14] ;
-input \u_loader/prom_addr[13] ;
-input \u_loader/prom_addr[12] ;
-input \u_loader/prom_addr[11] ;
-input \u_loader/prom_addr[10] ;
-input \u_loader/prom_addr[9] ;
-input \u_loader/prom_addr[8] ;
-input \u_loader/prom_addr[7] ;
-input \u_loader/prom_addr[6] ;
-input \u_loader/prom_addr[5] ;
-input \u_loader/prom_addr[4] ;
-input \u_loader/prom_addr[3] ;
-input \u_loader/prom_addr[2] ;
-input \u_loader/prom_addr[1] ;
-input \u_loader/prom_addr[0] ;
 input \u_loader/prom_dout[7] ;
 input \u_loader/prom_dout[6] ;
 input \u_loader/prom_dout[5] ;
@@ -156,15 +102,29 @@ input \u_loader/prom_dout[3] ;
 input \u_loader/prom_dout[2] ;
 input \u_loader/prom_dout[1] ;
 input \u_loader/prom_dout[0] ;
-input \data_out[7] ;
-input \data_out[6] ;
-input \data_out[5] ;
-input \data_out[4] ;
-input \data_out[3] ;
-input \data_out[2] ;
-input \data_out[1] ;
-input \data_out[0] ;
+input \u_loader/prom_valid_q ;
+input \u_loader/prom_addr[7] ;
+input \u_loader/prom_addr[6] ;
+input \u_loader/prom_addr[5] ;
+input \u_loader/prom_addr[4] ;
+input \u_loader/prom_addr[3] ;
+input \u_loader/prom_addr[2] ;
+input \u_loader/prom_addr[1] ;
+input \u_loader/prom_addr[0] ;
+input \u_loader/fifo_wr ;
+input \u_loader/fifo_empty ;
+input \u_loader/i_next ;
+input \data_out_controlled[7] ;
+input \data_out_controlled[6] ;
+input \data_out_controlled[5] ;
+input \data_out_controlled[4] ;
+input \data_out_controlled[3] ;
+input \data_out_controlled[2] ;
+input \data_out_controlled[1] ;
+input \data_out_controlled[0] ;
+input \run_cnt[24] ;
 input rst_n;
+input sys_clk;
 input tms_pad_i;
 input tck_pad_i;
 input tdi_pad_i;
@@ -197,42 +157,8 @@ wire \cnt_ver[0] ;
 wire tp0_vs_in;
 wire tp0_hs_in;
 wire tp0_de_in;
-wire sys_clk;
-wire \run_cnt[24] ;
-wire \run_cnt[23] ;
-wire \run_cnt[22] ;
-wire \run_cnt[21] ;
-wire \run_cnt[20] ;
-wire \u_loader/i_next ;
 wire \u_loader/o_valid ;
 wire \u_loader/prom_ce ;
-wire \u_loader/prom_valid_q ;
-wire \u_loader/fifo_empty ;
-wire \u_loader/fifo_wr ;
-wire \u_loader/o_data[7] ;
-wire \u_loader/o_data[6] ;
-wire \u_loader/o_data[5] ;
-wire \u_loader/o_data[4] ;
-wire \u_loader/o_data[3] ;
-wire \u_loader/o_data[2] ;
-wire \u_loader/o_data[1] ;
-wire \u_loader/o_data[0] ;
-wire \u_loader/prom_addr[15] ;
-wire \u_loader/prom_addr[14] ;
-wire \u_loader/prom_addr[13] ;
-wire \u_loader/prom_addr[12] ;
-wire \u_loader/prom_addr[11] ;
-wire \u_loader/prom_addr[10] ;
-wire \u_loader/prom_addr[9] ;
-wire \u_loader/prom_addr[8] ;
-wire \u_loader/prom_addr[7] ;
-wire \u_loader/prom_addr[6] ;
-wire \u_loader/prom_addr[5] ;
-wire \u_loader/prom_addr[4] ;
-wire \u_loader/prom_addr[3] ;
-wire \u_loader/prom_addr[2] ;
-wire \u_loader/prom_addr[1] ;
-wire \u_loader/prom_addr[0] ;
 wire \u_loader/prom_dout[7] ;
 wire \u_loader/prom_dout[6] ;
 wire \u_loader/prom_dout[5] ;
@@ -241,15 +167,29 @@ wire \u_loader/prom_dout[3] ;
 wire \u_loader/prom_dout[2] ;
 wire \u_loader/prom_dout[1] ;
 wire \u_loader/prom_dout[0] ;
-wire \data_out[7] ;
-wire \data_out[6] ;
-wire \data_out[5] ;
-wire \data_out[4] ;
-wire \data_out[3] ;
-wire \data_out[2] ;
-wire \data_out[1] ;
-wire \data_out[0] ;
+wire \u_loader/prom_valid_q ;
+wire \u_loader/prom_addr[7] ;
+wire \u_loader/prom_addr[6] ;
+wire \u_loader/prom_addr[5] ;
+wire \u_loader/prom_addr[4] ;
+wire \u_loader/prom_addr[3] ;
+wire \u_loader/prom_addr[2] ;
+wire \u_loader/prom_addr[1] ;
+wire \u_loader/prom_addr[0] ;
+wire \u_loader/fifo_wr ;
+wire \u_loader/fifo_empty ;
+wire \u_loader/i_next ;
+wire \data_out_controlled[7] ;
+wire \data_out_controlled[6] ;
+wire \data_out_controlled[5] ;
+wire \data_out_controlled[4] ;
+wire \data_out_controlled[3] ;
+wire \data_out_controlled[2] ;
+wire \data_out_controlled[1] ;
+wire \data_out_controlled[0] ;
+wire \run_cnt[24] ;
 wire rst_n;
+wire sys_clk;
 wire tms_pad_i;
 wire tck_pad_i;
 wire tdi_pad_i;
@@ -325,7 +265,7 @@ ao_top_0  u_la0_top(
     .control(control0[9:0]),
     .trig0_i(\run_cnt[24] ),
     .trig1_i(rst_n),
-    .data_i({\cnt_hor[11] ,\cnt_hor[10] ,\cnt_hor[9] ,\cnt_hor[8] ,\cnt_hor[7] ,\cnt_hor[6] ,\cnt_hor[5] ,\cnt_hor[4] ,\cnt_hor[3] ,\cnt_hor[2] ,\cnt_hor[1] ,\cnt_hor[0] ,\cnt_ver[11] ,\cnt_ver[10] ,\cnt_ver[9] ,\cnt_ver[8] ,\cnt_ver[7] ,\cnt_ver[6] ,\cnt_ver[5] ,\cnt_ver[4] ,\cnt_ver[3] ,\cnt_ver[2] ,\cnt_ver[1] ,\cnt_ver[0] ,tp0_vs_in,tp0_hs_in,tp0_de_in,sys_clk,\run_cnt[24] ,\run_cnt[23] ,\run_cnt[22] ,\run_cnt[21] ,\run_cnt[20] ,\u_loader/i_next ,\u_loader/o_valid ,\u_loader/prom_ce ,\u_loader/prom_valid_q ,\u_loader/fifo_empty ,\u_loader/fifo_wr ,\u_loader/o_data[7] ,\u_loader/o_data[6] ,\u_loader/o_data[5] ,\u_loader/o_data[4] ,\u_loader/o_data[3] ,\u_loader/o_data[2] ,\u_loader/o_data[1] ,\u_loader/o_data[0] ,\u_loader/prom_addr[15] ,\u_loader/prom_addr[14] ,\u_loader/prom_addr[13] ,\u_loader/prom_addr[12] ,\u_loader/prom_addr[11] ,\u_loader/prom_addr[10] ,\u_loader/prom_addr[9] ,\u_loader/prom_addr[8] ,\u_loader/prom_addr[7] ,\u_loader/prom_addr[6] ,\u_loader/prom_addr[5] ,\u_loader/prom_addr[4] ,\u_loader/prom_addr[3] ,\u_loader/prom_addr[2] ,\u_loader/prom_addr[1] ,\u_loader/prom_addr[0] ,\u_loader/prom_dout[7] ,\u_loader/prom_dout[6] ,\u_loader/prom_dout[5] ,\u_loader/prom_dout[4] ,\u_loader/prom_dout[3] ,\u_loader/prom_dout[2] ,\u_loader/prom_dout[1] ,\u_loader/prom_dout[0] ,\data_out[7] ,\data_out[6] ,\data_out[5] ,\data_out[4] ,\data_out[3] ,\data_out[2] ,\data_out[1] ,\data_out[0] }),
+    .data_i({\cnt_hor[11] ,\cnt_hor[10] ,\cnt_hor[9] ,\cnt_hor[8] ,\cnt_hor[7] ,\cnt_hor[6] ,\cnt_hor[5] ,\cnt_hor[4] ,\cnt_hor[3] ,\cnt_hor[2] ,\cnt_hor[1] ,\cnt_hor[0] ,\cnt_ver[11] ,\cnt_ver[10] ,\cnt_ver[9] ,\cnt_ver[8] ,\cnt_ver[7] ,\cnt_ver[6] ,\cnt_ver[5] ,\cnt_ver[4] ,\cnt_ver[3] ,\cnt_ver[2] ,\cnt_ver[1] ,\cnt_ver[0] ,tp0_vs_in,tp0_hs_in,tp0_de_in,\u_loader/o_valid ,\u_loader/prom_ce ,\u_loader/prom_dout[7] ,\u_loader/prom_dout[6] ,\u_loader/prom_dout[5] ,\u_loader/prom_dout[4] ,\u_loader/prom_dout[3] ,\u_loader/prom_dout[2] ,\u_loader/prom_dout[1] ,\u_loader/prom_dout[0] ,\u_loader/prom_valid_q ,\u_loader/prom_addr[7] ,\u_loader/prom_addr[6] ,\u_loader/prom_addr[5] ,\u_loader/prom_addr[4] ,\u_loader/prom_addr[3] ,\u_loader/prom_addr[2] ,\u_loader/prom_addr[1] ,\u_loader/prom_addr[0] ,\u_loader/fifo_wr ,\u_loader/fifo_empty ,\u_loader/i_next ,\data_out_controlled[7] ,\data_out_controlled[6] ,\data_out_controlled[5] ,\data_out_controlled[4] ,\data_out_controlled[3] ,\data_out_controlled[2] ,\data_out_controlled[1] ,\data_out_controlled[0] }),
     .clk_i(sys_clk)
 );
 

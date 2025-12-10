@@ -2,7 +2,7 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Standard</Mode>
-    <AoCore index="0" sample_clock="sys_clk" trig_type="0" storage_depth="2048" window_num="1" capture_amount="2048" implementation="0" trigger_pos="0" module_name="DEMO_V01_TOP" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
+    <AoCore index="0" sample_clock="sys_clk" trig_type="0" storage_depth="4096" window_num="1" capture_amount="4096" implementation="0" trigger_pos="0" module_name="DEMO_V01_TOP" force_trigger_by_falling_edge="false" capture_init_data_enabled="true">
         <SignalList>
             <Bus capture_enable="true" name="cnt_hor[11:0]">
                 <Signal>cnt_hor[11]</Signal>
@@ -35,46 +35,8 @@
             <Signal capture_enable="true">tp0_vs_in</Signal>
             <Signal capture_enable="true">tp0_hs_in</Signal>
             <Signal capture_enable="true">tp0_de_in</Signal>
-            <Signal capture_enable="true">sys_clk</Signal>
-            <Signal capture_enable="true">run_cnt[24]</Signal>
-            <Signal capture_enable="true">run_cnt[23]</Signal>
-            <Signal capture_enable="true">run_cnt[22]</Signal>
-            <Signal capture_enable="true">run_cnt[21]</Signal>
-            <Signal capture_enable="true">run_cnt[20]</Signal>
-            <Signal capture_enable="true">u_loader/i_next</Signal>
             <Signal capture_enable="true">u_loader/o_valid</Signal>
             <Signal capture_enable="true">u_loader/prom_ce</Signal>
-            <Signal capture_enable="true">u_loader/prom_valid_q</Signal>
-            <Signal capture_enable="true">u_loader/fifo_empty</Signal>
-            <Signal capture_enable="true">u_loader/fifo_wr</Signal>
-            <Bus capture_enable="true" name="u_loader/o_data[7:0]">
-                <Signal>u_loader/o_data[7]</Signal>
-                <Signal>u_loader/o_data[6]</Signal>
-                <Signal>u_loader/o_data[5]</Signal>
-                <Signal>u_loader/o_data[4]</Signal>
-                <Signal>u_loader/o_data[3]</Signal>
-                <Signal>u_loader/o_data[2]</Signal>
-                <Signal>u_loader/o_data[1]</Signal>
-                <Signal>u_loader/o_data[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_loader/prom_addr[15:0]">
-                <Signal>u_loader/prom_addr[15]</Signal>
-                <Signal>u_loader/prom_addr[14]</Signal>
-                <Signal>u_loader/prom_addr[13]</Signal>
-                <Signal>u_loader/prom_addr[12]</Signal>
-                <Signal>u_loader/prom_addr[11]</Signal>
-                <Signal>u_loader/prom_addr[10]</Signal>
-                <Signal>u_loader/prom_addr[9]</Signal>
-                <Signal>u_loader/prom_addr[8]</Signal>
-                <Signal>u_loader/prom_addr[7]</Signal>
-                <Signal>u_loader/prom_addr[6]</Signal>
-                <Signal>u_loader/prom_addr[5]</Signal>
-                <Signal>u_loader/prom_addr[4]</Signal>
-                <Signal>u_loader/prom_addr[3]</Signal>
-                <Signal>u_loader/prom_addr[2]</Signal>
-                <Signal>u_loader/prom_addr[1]</Signal>
-                <Signal>u_loader/prom_addr[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="u_loader/prom_dout[7:0]">
                 <Signal>u_loader/prom_dout[7]</Signal>
                 <Signal>u_loader/prom_dout[6]</Signal>
@@ -85,15 +47,29 @@
                 <Signal>u_loader/prom_dout[1]</Signal>
                 <Signal>u_loader/prom_dout[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="data_out[7:0]">
-                <Signal>data_out[7]</Signal>
-                <Signal>data_out[6]</Signal>
-                <Signal>data_out[5]</Signal>
-                <Signal>data_out[4]</Signal>
-                <Signal>data_out[3]</Signal>
-                <Signal>data_out[2]</Signal>
-                <Signal>data_out[1]</Signal>
-                <Signal>data_out[0]</Signal>
+            <Signal capture_enable="true">u_loader/prom_valid_q</Signal>
+            <Bus capture_enable="true" name="u_loader/prom_addr[7:0]">
+                <Signal>u_loader/prom_addr[7]</Signal>
+                <Signal>u_loader/prom_addr[6]</Signal>
+                <Signal>u_loader/prom_addr[5]</Signal>
+                <Signal>u_loader/prom_addr[4]</Signal>
+                <Signal>u_loader/prom_addr[3]</Signal>
+                <Signal>u_loader/prom_addr[2]</Signal>
+                <Signal>u_loader/prom_addr[1]</Signal>
+                <Signal>u_loader/prom_addr[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">u_loader/fifo_wr</Signal>
+            <Signal capture_enable="true">u_loader/fifo_empty</Signal>
+            <Signal capture_enable="true">u_loader/i_next</Signal>
+            <Bus capture_enable="true" name="data_out_controlled[7:0]">
+                <Signal>data_out_controlled[7]</Signal>
+                <Signal>data_out_controlled[6]</Signal>
+                <Signal>data_out_controlled[5]</Signal>
+                <Signal>data_out_controlled[4]</Signal>
+                <Signal>data_out_controlled[3]</Signal>
+                <Signal>data_out_controlled[2]</Signal>
+                <Signal>data_out_controlled[1]</Signal>
+                <Signal>data_out_controlled[0]</Signal>
             </Bus>
         </SignalList>
         <Triggers>
@@ -144,5 +120,5 @@
             <Expression>M0|M1</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0001000110011001</GAO_ID>
+    <GAO_ID>1100100000010101</GAO_ID>
 </GAO_CONFIG>
