@@ -1,0 +1,31 @@
+Reading netlist file: "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\gwsynthesis\IMG_FILTER_DISPLAY.vg"
+Parsing netlist file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\gwsynthesis\IMG_FILTER_DISPLAY.vg" completed
+Processing netlist completed
+Reading constraint file: "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\src\dk_video.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
+WARN  (TA1132) :  'u_CLKDIV/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\IMG_FILTER_DISPLAY.power.html" completed
+Generate file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\IMG_FILTER_DISPLAY.pin.html" completed
+Generate file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\IMG_FILTER_DISPLAY.rpt.html" completed
+Generate file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\IMG_FILTER_DISPLAY.rpt.txt" completed
+Generate file "C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\IMG_FILTER_DISPLAY.tr.html" completed
+Wed Dec 10 21:26:02 2025
+
