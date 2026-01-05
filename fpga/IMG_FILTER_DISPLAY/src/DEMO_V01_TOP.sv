@@ -141,11 +141,11 @@ end
     assign tp0_vs_in = (cnt_ver >= V_ACTIVE + 10 && cnt_ver < V_ACTIVE + 10 + 2)  ? 1'b0 : 1'b1;
 
 // Request data when we are inside the 225x225 image area
-// Image shifted to (50, 50)
-localparam IMG_START_X = 12'd50;
-localparam IMG_START_Y = 12'd50;
-assign data_request = (cnt_hor >= IMG_START_X && cnt_hor < IMG_START_X + 225) && 
-                      (cnt_ver >= IMG_START_Y && cnt_ver < IMG_START_Y + 225);
+// Image shifted to (50, 50) and upscaled to 450x450
+localparam IMG_START_X = 12'd0;
+localparam IMG_START_Y = 12'd0;
+assign data_request = (cnt_hor >= IMG_START_X && cnt_hor < IMG_START_X + 450) && 
+                      (cnt_ver >= IMG_START_Y && cnt_ver < IMG_START_Y + 450);
 
 //----------------------------------------------------
 
