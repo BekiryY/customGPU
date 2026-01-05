@@ -1,6 +1,7 @@
 module loader (
     input  wire        clk,
     input  wire        rst_n,      // Active low system reset
+    input  wire        i_vsync,    // Active low Vertical Sync (Frame Reset)
     
     // User interface (FIFO Read)
     input  wire        i_next,     // Request next data (read enable)
@@ -12,7 +13,7 @@ module loader (
     // Parameters
     //-----------------------------------------------------
     localparam MAX_ADDR = 16'hFFFF;  // 16-bit address depth (65536)
-    localparam FIFO_DEPTH_BIT = 8;   // 256 words (Pixels) - sufficient for buffering
+    localparam FIFO_DEPTH_BIT = 8;   // 256 words - sufficient for buffering
     localparam FIFO_DEPTH = (1 << FIFO_DEPTH_BIT);
     localparam THRESHOLD  = FIFO_DEPTH - 4; 
 
@@ -23,6 +24,7 @@ module loader (
     reg  [15:0] prom_addr;           // 16-bit address
     wire        prom_ce;
     reg         prom_valid_q; 
+    reg         prom_valid_q2;       // Pipeline for 2-cycle latency
 
     wire        fifo_full;
     wire        fifo_empty;
@@ -36,24 +38,33 @@ module loader (
     //-----------------------------------------------------
     
     // Read continuously if FIFO is not full
-    // Read continuously if FIFO is not full
     assign prom_ce = (fifo_cnt < THRESHOLD);
 
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             prom_addr <= 16'd0;
             prom_valid_q <= 1'b0;
+            prom_valid_q2 <= 1'b0;
         end else begin
-            if (prom_ce) begin
+            // VSYNC Reset (Frame Sync) - High priority
+            if (!i_vsync) begin
+                prom_addr <= 16'd0;
+                prom_valid_q <= 1'b0;
+                prom_valid_q2 <= 1'b0;
+            end 
+            else if (prom_ce) begin
                 if (prom_addr == 16'd50624) // 225*225 - 1
-                    prom_addr <= 16'd0;
+                    prom_addr <= 16'd0; // Auto-loop (failsafe)
                 else
                     prom_addr <= prom_addr + 1'b1;
                 
-                prom_valid_q <= 1'b1; // Valid data next cycle
+                prom_valid_q <= 1'b1; 
             end else begin
                 prom_valid_q <= 1'b0;
             end
+            
+            // Delays valid signal to match Data arrival time
+            prom_valid_q2 <= prom_valid_q;
         end
     end
 
@@ -72,18 +83,24 @@ module loader (
     //-----------------------------------------------------
     // 3. FIFO Write Logic
     //-----------------------------------------------------
-    // Directly passing byte from PROM to FIFO
+    // Using Q2 to account for BRAM Latency
     
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             fifo_wr <= 1'b0;
             fifo_din <= 0;
         end else begin
-            fifo_wr <= 1'b0; // Default
+            // Reset on VSYNC to clear old line data
+            if (!i_vsync) begin
+                 fifo_wr <= 1'b0;
+            end
+            else begin
+                fifo_wr <= 1'b0; // Default
 
-            if (prom_valid_q) begin
-                fifo_din <= prom_dout;
-                fifo_wr  <= 1'b1;
+                if (prom_valid_q2) begin
+                    fifo_din <= prom_dout;
+                    fifo_wr  <= 1'b1;
+                end
             end
         end
     end
@@ -98,9 +115,13 @@ module loader (
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             wr_ptr <= 0;
-        end else if(fifo_wr) begin
-            mem[wr_ptr] <= fifo_din;
-            wr_ptr <= wr_ptr + 1'b1;
+        end else begin
+            if(!i_vsync) begin
+                wr_ptr <= 0; // Reset write pointer on Frame start
+            end else if(fifo_wr) begin
+                mem[wr_ptr] <= fifo_din;
+                wr_ptr <= wr_ptr + 1'b1;
+            end
         end
     end
 
@@ -115,8 +136,12 @@ module loader (
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             rd_ptr <= 0;
-        end else if(i_next && !fifo_empty) begin
-            rd_ptr <= rd_ptr + 1'b1;
+        end else begin
+            if(!i_vsync) begin
+                rd_ptr <= 0; // Reset read pointer on Frame start
+            end else if(i_next && !fifo_empty) begin
+                rd_ptr <= rd_ptr + 1'b1;
+            end
         end
     end
 
@@ -129,13 +154,16 @@ module loader (
         if(!rst_n) begin
             fifo_cnt <= 0;
         end else begin
-            case ({fifo_wr, read_event})
-                2'b10: fifo_cnt <= fifo_cnt + 1'b1; // Write, no read
-                2'b01: fifo_cnt <= fifo_cnt - 1'b1; // Read, no write
-                2'b11: fifo_cnt <= fifo_cnt;        // Both
-                default: fifo_cnt <= fifo_cnt;
-            endcase
+            if(!i_vsync) begin
+                fifo_cnt <= 0;
+            end else begin
+                case ({fifo_wr, read_event})
+                    2'b10: fifo_cnt <= fifo_cnt + 1'b1; // Write, no read
+                    2'b01: fifo_cnt <= fifo_cnt - 1'b1; // Read, no write
+                    2'b11: fifo_cnt <= fifo_cnt;        // Both
+                    default: fifo_cnt <= fifo_cnt;
+                endcase
+            end
         end
     end
-
 endmodule

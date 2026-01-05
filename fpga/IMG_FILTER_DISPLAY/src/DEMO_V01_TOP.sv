@@ -95,6 +95,7 @@ assign data_out_controlled = data_request ? data_out : 8'b0;
     loader u_loader (
         .clk(sys_clk),
         .rst_n(hdmi4_rst_n),
+        .i_vsync(tp0_vs_in),
         .i_next(data_request),
         .o_data(data_out),
         .o_valid(data_valid)
