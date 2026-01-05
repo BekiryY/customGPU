@@ -16,6 +16,7 @@ module loader (
     localparam FIFO_DEPTH_BIT = 8;   // 256 words - sufficient for buffering
     localparam FIFO_DEPTH = (1 << FIFO_DEPTH_BIT);
     localparam THRESHOLD  = FIFO_DEPTH - 4; 
+    localparam START_ADDR = 16'd10;  // Skip first 10 pixels due to bootrom latency
 
     //-----------------------------------------------------
     // Internal Signals
@@ -42,19 +43,19 @@ module loader (
 
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            prom_addr <= 16'd0;
+            prom_addr <= START_ADDR;
             prom_valid_q <= 1'b0;
             prom_valid_q2 <= 1'b0;
         end else begin
             // VSYNC Reset (Frame Sync) - High priority
             if (!i_vsync) begin
-                prom_addr <= 16'd0;
+                prom_addr <= START_ADDR;
                 prom_valid_q <= 1'b0;
                 prom_valid_q2 <= 1'b0;
             end 
             else if (prom_ce) begin
                 if (prom_addr == 16'd50624) // 225*225 - 1
-                    prom_addr <= 16'd0; // Auto-loop (failsafe)
+                    prom_addr <= START_ADDR; // Auto-loop (failsafe)
                 else
                     prom_addr <= prom_addr + 1'b1;
                 
