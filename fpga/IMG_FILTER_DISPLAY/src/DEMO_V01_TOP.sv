@@ -140,14 +140,66 @@ end
     assign tp0_hs_in = (cnt_hor >= H_ACTIVE + 16 && cnt_hor < H_ACTIVE + 16 + 96) ? 1'b0 : 1'b1; 
     assign tp0_vs_in = (cnt_ver >= V_ACTIVE + 10 && cnt_ver < V_ACTIVE + 10 + 2)  ? 1'b0 : 1'b1;
 
-// Request data when we are inside the 225x225 image area
-// Image shifted to (50, 50)
-localparam IMG_START_X = 12'd50;
-localparam IMG_START_Y = 12'd50;
-assign data_request = (cnt_hor >= (IMG_START_X + run_cnt[28:20])) && 
-                      (cnt_hor < (IMG_START_X + run_cnt[28:20] + 225)) && 
-                      (cnt_ver >= (IMG_START_Y + run_cnt[24:15])) && 
-                      (cnt_ver < (IMG_START_Y + run_cnt[24:15] + 225));
+//-----------------------------------------------------
+// Bouncing Logic (Wall Hitting)
+//-----------------------------------------------------
+localparam IMG_W = 225;
+localparam IMG_H = 225;
+localparam BOUND_X_MAX = 415; // 640 - 225
+localparam BOUND_Y_MAX = 255; // 480 - 225
+
+reg [11:0] img_x;
+reg [11:0] img_y;
+reg        dir_x; // 1: Right, 0: Left
+reg        dir_y; // 1: Down, 0: Up
+
+always @(posedge sys_clk or negedge hdmi4_rst_n) begin
+    if (!hdmi4_rst_n) begin
+        img_x <= 0;
+        img_y <= 0;
+        dir_x <= 1'b1;
+        dir_y <= 1'b1;
+    end else if (cnt_hor == 0 && cnt_ver == 0) begin
+        // Update Position once per frame
+        
+        // X Direction
+        if (dir_x) begin
+            if (img_x >= BOUND_X_MAX) begin
+                dir_x <= 1'b0;
+                img_x <= img_x - 1'b1;
+            end else begin
+                img_x <= img_x + 1'b1;
+            end
+        end else begin
+            if (img_x == 0) begin
+                dir_x <= 1'b1;
+                img_x <= img_x + 1'b1;
+            end else begin
+                img_x <= img_x - 1'b1;
+            end
+        end
+
+        // Y Direction
+        if (dir_y) begin
+            if (img_y >= BOUND_Y_MAX) begin
+                dir_y <= 1'b0;
+                img_y <= img_y - 1'b1;
+            end else begin
+                img_y <= img_y + 1'b1;
+            end
+        end else begin
+            if (img_y == 0) begin
+                dir_y <= 1'b1;
+                img_y <= img_y + 1'b1;
+            end else begin
+                img_y <= img_y - 1'b1;
+            end
+        end
+    end
+end
+
+assign data_request = (cnt_hor >= img_x && cnt_hor < img_x + IMG_W) && 
+                      (cnt_ver >= img_y && cnt_ver < img_y + IMG_H);
 
 //----------------------------------------------------
 
