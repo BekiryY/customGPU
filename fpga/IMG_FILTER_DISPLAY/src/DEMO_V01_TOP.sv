@@ -144,8 +144,10 @@ end
 // Image shifted to (50, 50)
 localparam IMG_START_X = 12'd50;
 localparam IMG_START_Y = 12'd50;
-assign data_request = (cnt_hor >= IMG_START_X && cnt_hor < IMG_START_X + 225) && 
-                      (cnt_ver >= IMG_START_Y && cnt_ver < IMG_START_Y + 225);
+assign data_request = (cnt_hor >= (IMG_START_X + run_cnt[28:20])) && 
+                      (cnt_hor < (IMG_START_X + run_cnt[28:20] + 225)) && 
+                      (cnt_ver >= (IMG_START_Y + run_cnt[24:15])) && 
+                      (cnt_ver < (IMG_START_Y + run_cnt[24:15] + 225));
 
 //----------------------------------------------------
 
