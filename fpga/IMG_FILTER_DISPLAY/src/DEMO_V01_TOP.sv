@@ -1,7 +1,7 @@
 module DEMO_V01_TOP 
     #(
         parameter DATA_WIDTH = 8,
-        parameter FILTER_SIZE = 3
+        parameter FILTER_SIZE = 5
     )
     (
     input  wire       clk_i,
@@ -141,7 +141,7 @@ module DEMO_V01_TOP
 
     loader #(
         .DATA_WIDTH (DATA_WIDTH),
-        .FILTER_SIZE (3)
+        .FILTER_SIZE (FILTER_SIZE)
     ) u_loader (
         .clk     (sys_clk),
         .rst_n   (hdmi4_rst_n),

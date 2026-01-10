@@ -83,7 +83,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Sat Jan 10 20:10:59 2026
+<td>Sat Jan 10 20:16:07 2026
 </td>
 </tr>
 <tr>
@@ -97,24 +97,24 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">Place & Route Process</td>
 <td>Running placement:
-   Placement Phase 0: CPU time = 0h 0m 0.165s, Elapsed time = 0h 0m 0.164s
+   Placement Phase 0: CPU time = 0h 0m 0.264s, Elapsed time = 0h 0m 0.264s
    Placement Phase 1: CPU time = 0h 0m 0.262s, Elapsed time = 0h 0m 0.262s
-   Placement Phase 2: CPU time = 0h 0m 0.282s, Elapsed time = 0h 0m 0.283s
-   Placement Phase 3: CPU time = 0h 0m 0.885s, Elapsed time = 0h 0m 0.885s
+   Placement Phase 2: CPU time = 0h 0m 0.425s, Elapsed time = 0h 0m 0.425s
+   Placement Phase 3: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
    Total Placement: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
 Running routing:
-   Routing Phase 0: CPU time = 0h 0m 0.001s, Elapsed time = 0h 0m 0.001s
-   Routing Phase 1: CPU time = 0h 0m 0.287s, Elapsed time = 0h 0m 0.287s
-   Routing Phase 2: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
+   Routing Phase 0: CPU time = 0h 0m 0.002s, Elapsed time = 0h 0m 0.002s
+   Routing Phase 1: CPU time = 0h 0m 0.321s, Elapsed time = 0h 0m 0.321s
+   Routing Phase 2: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
    Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
    Total Routing: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
 Generate output files:
-   CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
+   CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
 </td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s, Peak memory usage = 502MB</td>
+<td>CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s, Peak memory usage = 502MB</td>
 </tr>
 </table>
 <br/>
@@ -129,23 +129,23 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>1799/20736</td>
-<td>9%</td>
+<td>2641/20736</td>
+<td>13%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --LUT,ALU,ROM16</td>
-<td>1415(1211 LUT, 204 ALU, 0 ROM16)</td>
+<td>1873(1334 LUT, 539 ALU, 0 ROM16)</td>
 <td>-</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --SSRAM(RAM16)</td>
-<td>64</td>
+<td>128</td>
 <td>-</td>
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>746/16173</td>
-<td>5%</td>
+<td>874/16173</td>
+<td>6%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --Logic Register as Latch</td>
@@ -154,8 +154,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --Logic Register as FF</td>
-<td>745/15552</td>
-<td>5%</td>
+<td>873/15552</td>
+<td>6%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --I/O Register as Latch</td>
@@ -169,8 +169,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">CLS</td>
-<td>1191/10368</td>
-<td>12%</td>
+<td>1676/10368</td>
+<td>17%</td>
 </tr>
 <tr>
 <td class="label">I/O Port</td>
@@ -262,8 +262,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">LW</td>
-<td>3/8</td>
-<td>38%</td>
+<td>4/8</td>
+<td>50%</td>
 </tr>
 <tr>
 <td class="label">GCLK_PIN</td>
@@ -297,7 +297,7 @@ Generate output files:
 <tr>
 <td class="label">pix_clk</td>
 <td>PRIMARY</td>
-<td> TR TL</td>
+<td> TR TL BR</td>
 </tr>
 <tr>
 <td class="label">sys_clk</td>
@@ -307,7 +307,7 @@ Generate output files:
 <tr>
 <td class="label">gw_gao_inst_0/control0[0]</td>
 <td>PRIMARY</td>
-<td> TR TL BR BL</td>
+<td> TR BR</td>
 </tr>
 <tr>
 <td class="label">hdmi4_rst_n</td>
@@ -321,6 +321,11 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">gw_gao_inst_0/u_la0_top/capture_end_init_Z</td>
+<td>LW</td>
+<td> -</td>
+</tr>
+<tr>
+<td class="label">u_loader/prom_valid_q2</td>
 <td>LW</td>
 <td> -</td>
 </tr>
