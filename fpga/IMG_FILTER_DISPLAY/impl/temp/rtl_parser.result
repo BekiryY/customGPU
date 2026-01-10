@@ -1,5 +1,75 @@
 [
  {
+  "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+  "InstLine" : 1,
+  "InstName" : "DEMO_V01_TOP",
+  "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+  "ModuleLine" : 1,
+  "ModuleName" : "DEMO_V01_TOP",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+    "InstLine" : 72,
+    "InstName" : "u_PLL_3",
+    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_rpll_21/gowin_rpll_21.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_rPLL_21"
+   },
+   {
+    "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+    "InstLine" : 78,
+    "InstName" : "u_PLL_2",
+    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/tmds_rPLL/tmds_rPLL.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "tmds_rPLL"
+   },
+   {
+    "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+    "InstLine" : 137,
+    "InstName" : "u_loader",
+    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/loader.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "loader",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/loader.sv",
+      "InstLine" : 83,
+      "InstName" : "u_prom",
+      "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_prom/gowin_prom.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "Gowin_pROM"
+     },
+     {
+      "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/loader.sv",
+      "InstLine" : 176,
+      "InstName" : "u_gaus_blur_filter",
+      "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/GAUS_BLUR_FILTER.sv",
+      "ModuleLine" : 1,
+      "ModuleName" : "GAUS_BLUR_FILTER"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
+    "InstLine" : 154,
+    "InstName" : "u_DVI_TX_Top",
+    "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/dvi_tx/dvi_tx.v",
+    "ModuleLine" : 1072,
+    "ModuleName" : "DVI_TX_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/dvi_tx/dvi_tx.v",
+      "InstLine" : 1103,
+      "InstName" : "rgb2dvi_inst",
+      "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/dvi_tx/dvi_tx.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~rgb2dvi.DVI_TX_Top"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_clkdiv/gowin_clkdiv.v",
   "InstLine" : 10,
   "InstName" : "Gowin_CLKDIV",

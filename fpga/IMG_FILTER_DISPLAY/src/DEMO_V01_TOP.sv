@@ -127,9 +127,9 @@ module DEMO_V01_TOP (
     //-----------------------------------------------------
     // Data Loading & Image Logic
     //-----------------------------------------------------
-    // Request data when we are inside the 225x225 image area, upscaled to 450x450
-    assign data_request = (cnt_hor >= IMG_START_X && cnt_hor < IMG_START_X + 450) && 
-                          (cnt_ver >= IMG_START_Y && cnt_ver < IMG_START_Y + 450);
+    // Request data when we are inside the 225x225 image area
+    assign data_request = (cnt_hor >= IMG_START_X && cnt_hor < IMG_START_X + 225) && 
+                          (cnt_ver >= IMG_START_Y && cnt_ver < IMG_START_Y + 225);
 
     // Mask data if not requested
     assign data_out_controlled = data_request ? data_out : 8'b0;
@@ -139,7 +139,6 @@ module DEMO_V01_TOP (
         .rst_n   (hdmi4_rst_n),
         .i_vsync (tp0_vs_in),
         .i_next  (data_request),
-        .filter_en (1'b0),
         .o_data  (data_out),
         .o_valid (data_valid)
     );

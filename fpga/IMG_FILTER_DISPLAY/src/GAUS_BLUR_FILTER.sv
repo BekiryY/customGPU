@@ -77,6 +77,9 @@ module GAUS_BLUR_FILTER #(
         
         // Final normalization shift
         pixel_out <= sum[SHIFT_VAL + DATA_W - 1 : SHIFT_VAL]; 
+        
+        // Latency match
+        o_valid <= i_valid;
     end
 
 endmodule

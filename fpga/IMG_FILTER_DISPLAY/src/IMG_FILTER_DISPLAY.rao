@@ -58,8 +58,6 @@
                 <Signal>u_loader/prom_addr[1]</Signal>
                 <Signal>u_loader/prom_addr[0]</Signal>
             </Bus>
-            <Signal capture_enable="true">u_loader/fifo_wr</Signal>
-            <Signal capture_enable="true">u_loader/fifo_empty</Signal>
             <Signal capture_enable="true">u_loader/i_next</Signal>
             <Bus capture_enable="true" name="data_out_controlled[7:0]">
                 <Signal>data_out_controlled[7]</Signal>
@@ -120,5 +118,5 @@
             <Expression>M0|M1</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1100100000010101</GAO_ID>
+    <GAO_ID>0111001101110011</GAO_ID>
 </GAO_CONFIG>

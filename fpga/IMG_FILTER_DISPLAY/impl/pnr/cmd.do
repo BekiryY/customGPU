@@ -4,7 +4,7 @@
 -cst C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\src\dk_video.cst
 -cfg C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\impl\pnr\device.cfg
 -sdc C:\Users\BEK\repos\customGPU\fpga\IMG_FILTER_DISPLAY\src\IMG_FILTER_DISPLAY.sdc
--gao_crc 1100100000010101
+-gao_crc 0111001101110011
 -bit
 -tr
 -ph
