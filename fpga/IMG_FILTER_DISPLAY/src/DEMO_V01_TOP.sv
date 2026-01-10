@@ -153,6 +153,8 @@ reg [11:0] img_y;
 reg        dir_x; // 1: Right, 0: Left
 reg        dir_y; // 1: Down, 0: Up
 
+localparam SPEED = 2; // Speed of movement (pixels per frame)
+
 always @(posedge sys_clk or negedge hdmi4_rst_n) begin
     if (!hdmi4_rst_n) begin
         img_x <= 0;
@@ -164,35 +166,44 @@ always @(posedge sys_clk or negedge hdmi4_rst_n) begin
         
         // X Direction
         if (dir_x) begin
-            if (img_x >= BOUND_X_MAX) begin
+            // Check if adding speed would exceed boundary
+            if (img_x >= BOUND_X_MAX - SPEED) begin
                 dir_x <= 1'b0;
-                img_x <= img_x - 1'b1;
+                // Bounce back
+                if (img_x >= SPEED) 
+                    img_x <= img_x - SPEED;
+                else 
+                    img_x <= 0;
             end else begin
-                img_x <= img_x + 1'b1;
+                img_x <= img_x + SPEED;
             end
         end else begin
-            if (img_x == 0) begin
+            // Check if subtracting speed would go below 0
+            if (img_x < SPEED) begin
                 dir_x <= 1'b1;
-                img_x <= img_x + 1'b1;
+                img_x <= img_x + SPEED;
             end else begin
-                img_x <= img_x - 1'b1;
+                img_x <= img_x - SPEED;
             end
         end
 
         // Y Direction
         if (dir_y) begin
-            if (img_y >= BOUND_Y_MAX) begin
+            if (img_y >= BOUND_Y_MAX - SPEED) begin
                 dir_y <= 1'b0;
-                img_y <= img_y - 1'b1;
+                if (img_y >= SPEED)
+                    img_y <= img_y - SPEED;
+                else
+                    img_y <= 0;
             end else begin
-                img_y <= img_y + 1'b1;
+                img_y <= img_y + SPEED;
             end
         end else begin
-            if (img_y == 0) begin
+            if (img_y < SPEED) begin
                 dir_y <= 1'b1;
-                img_y <= img_y + 1'b1;
+                img_y <= img_y + SPEED;
             end else begin
-                img_y <= img_y - 1'b1;
+                img_y <= img_y - SPEED;
             end
         end
     end
