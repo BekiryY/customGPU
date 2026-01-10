@@ -5,6 +5,7 @@ module loader (
     input  wire        i_vsync,    // Active low Vertical Sync (Frame Reset)
     
     // User interface (FIFO Read)
+    input  wire        filter_en,
     input  wire        i_next,     // Request next data (read enable)
     output wire [7:0]  o_data,     // Data output (8-bit grayscale)
     output wire        o_valid     // Data is valid (FIFO not empty)
@@ -17,7 +18,7 @@ module loader (
     localparam FIFO_DEPTH_BIT = 8;               // 256 words
     localparam FIFO_DEPTH     = (1 << FIFO_DEPTH_BIT);
     localparam THRESHOLD      = FIFO_DEPTH - 4; 
-    localparam START_ADDR     = 16'd12;          // Skip first 10 pixels due to bootrom latency
+    localparam START_ADDR     = 16'd10;          // Skip first 10 pixels due to bootrom latency
 
     //-----------------------------------------------------
     // Internal Signals
@@ -201,5 +202,17 @@ module loader (
             end
         end
     end
+
+    //-----------------------------------------------------
+    // 6. Filter Enable
+    //-----------------------------------------------------
+    GAUS_BLUR_FILTER u_gaus_blur_filter (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .i_valid (data_valid),
+        .i_data  (data_out),
+        .o_valid (data_valid),
+        .o_data  (data_out)
+    );
 
 endmodule

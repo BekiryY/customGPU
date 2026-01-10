@@ -139,9 +139,15 @@ module DEMO_V01_TOP (
         .rst_n   (hdmi4_rst_n),
         .i_vsync (tp0_vs_in),
         .i_next  (data_request),
+        .filter_en (1'b0),
         .o_data  (data_out),
         .o_valid (data_valid)
     );
+
+
+
+
+
 
     //-----------------------------------------------------
     // DVI/HDMI Output

@@ -33,7 +33,7 @@
     "SubInsts" : [
      {
       "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/loader.sv",
-      "InstLine" : 107,
+      "InstLine" : 108,
       "InstName" : "u_prom",
       "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_prom/gowin_prom.v",
       "ModuleLine" : 10,
@@ -43,7 +43,7 @@
    },
    {
     "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/DEMO_V01_TOP.sv",
-    "InstLine" : 149,
+    "InstLine" : 155,
     "InstName" : "u_DVI_TX_Top",
     "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1072,
@@ -68,5 +68,13 @@
   "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/gowin_clkdiv/gowin_clkdiv.v",
   "ModuleLine" : 10,
   "ModuleName" : "Gowin_CLKDIV"
+ },
+ {
+  "InstFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/GAUS_BLUR_FILTER.sv",
+  "InstLine" : 1,
+  "InstName" : "GAUS_BLUR_FILTER",
+  "ModuleFile" : "C:/Users/BEK/repos/customGPU/fpga/IMG_FILTER_DISPLAY/src/GAUS_BLUR_FILTER.sv",
+  "ModuleLine" : 1,
+  "ModuleName" : "GAUS_BLUR_FILTER"
  }
 ]
