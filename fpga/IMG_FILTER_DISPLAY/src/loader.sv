@@ -1,4 +1,8 @@
-module loader (
+module loader #(
+    parameter DATA_WIDTH = 8,
+    parameter FILTER_SIZE = 3
+) 
+(
     // System Inputs
     input  wire        clk,
     input  wire        rst_n,      // Active low system reset
@@ -206,7 +210,12 @@ module loader (
     //-----------------------------------------------------
     // 6. Filter Enable
     //-----------------------------------------------------
-    GAUS_BLUR_FILTER u_gaus_blur_filter (
+    GAUS_BLUR_FILTER u_gaus_blur_filter 
+    #(
+        .DATA_WIDTH (DATA_WIDTH),
+        .FILTER_SIZE (FILTER_SIZE)
+    )
+    (
         .clk     (clk),
         .rst_n   (rst_n),
         .i_valid (data_valid),
