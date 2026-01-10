@@ -18,7 +18,7 @@ module loader #(
     // Parameters
     //-----------------------------------------------------
     localparam MAX_ADDR       = 16'hFFFF;        // 16-bit address depth (65536)
-    localparam START_ADDR     = 16'd10;          // Skip first 10 pixels due to bootrom latency
+    localparam START_ADDR     = 16'd14;          // Skip first 10 pixels due to bootrom latency
     localparam IMG_W          = 225;
 
     //-----------------------------------------------------

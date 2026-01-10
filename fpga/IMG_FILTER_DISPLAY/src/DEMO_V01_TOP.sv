@@ -1,4 +1,9 @@
-module DEMO_V01_TOP (
+module DEMO_V01_TOP 
+    #(
+        parameter DATA_WIDTH = 8,
+        parameter FILTER_SIZE = 3
+    )
+    (
     input  wire       clk_i,
     input  wire       rst_n,
     output wire [4:0] O_led,
@@ -134,7 +139,10 @@ module DEMO_V01_TOP (
     // Mask data if not requested
     assign data_out_controlled = data_request ? data_out : 8'b0;
 
-    loader u_loader (
+    loader #(
+        .DATA_WIDTH (DATA_WIDTH),
+        .FILTER_SIZE (3)
+    ) u_loader (
         .clk     (sys_clk),
         .rst_n   (hdmi4_rst_n),
         .i_vsync (tp0_vs_in),
